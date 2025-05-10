@@ -1,0 +1,889 @@
+{
+  "users": {
+    "viji@gmail.com": {
+      "username": "Viji",
+      "password": "123",
+      "phone": "7010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "palani@gmail.com": {
+      "username": "Palani",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "priya@gmail.com": {
+      "username": "Priya",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "raja@gmail.com": {
+      "username": "Raja",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "dani@gmail.com": {
+      "username": "Dani",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "rathinam@gmail.com": {
+      "username": "Rathinam",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "suresh@gmail.com": {
+      "username": "Suresh",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "wdjkh",
+          "description": "njkek",
+          "dueDate": "2025-05-08",
+          "completed": true
+        },
+        {
+          "title": "hsb",
+          "description": "rnehk",
+          "dueDate": "2025-05-11",
+          "completed": false
+        }
+      ],
+      "missed": []
+    },
+    "sai@gmail.com": {
+      "username": "sai",
+      "password": "123",
+      "phone": "+91701066971",
+      "tasks": [],
+      "missed": []
+    },
+    "joy@gmail.com": {
+      "username": "joy",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "ehuwhu",
+          "description": "dnwkje",
+          "dueDate": "2025-05-12",
+          "completed": true
+        }
+      ],
+      "missed": []
+    },
+    "megha@gmail.com": {
+      "username": "megha",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "dharani@gmail.com": {
+      "username": "dharani",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "gayu@gmail.com": {
+      "username": "gayu",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "dkf",
+          "description": "f kj",
+          "dueDate": "2025-05-10",
+          "completed": false
+        }
+      ],
+      "missed": []
+    },
+    "dh@gmail.com": {
+      "username": "dh",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sri@gmail.com": {
+      "username": "sri",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "g",
+          "description": "djfsnjk",
+          "dueDate": "2025-05-10",
+          "completed": true
+        },
+        {
+          "title": "nsabm",
+          "description": "zndj",
+          "dueDate": "2025-05-05",
+          "completed": false
+        },
+        {
+          "title": "khk",
+          "description": "kh",
+          "dueDate": "2025-05-04",
+          "completed": false
+        }
+      ],
+      "missed": []
+    },
+    "radhi@gmail.com": {
+      "username": "radhi",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "rithi@gmail.com": {
+      "username": "rithi",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "dsn",
+          "description": "d sjf",
+          "dueDate": "2025-05-10",
+          "completed": false
+        }
+      ],
+      "missed": []
+    },
+    "aisu@gmail.com": {
+      "username": "aisu",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "kavi@gmail.com": {
+      "username": "kavi",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sathya@gmail.com": {
+      "username": "sathya",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "thamil@gmail.com": {
+      "username": "thamil",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sudha@gmail.com": {
+      "username": "sudha",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "hari@gmail.com": {
+      "username": "hari",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "harish@gmail.com": {
+      "username": "harish",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "harishe@gmail.com": {
+      "username": "harishe",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "harishee@gmail.com": {
+      "username": "harishee",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "harisheer@gmail.com": {
+      "username": "harisheer",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "harisheert@gmail.com": {
+      "username": "harisheert",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "harisheerth@gmail.com": {
+      "username": "harisheerth",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "parjin@gmail.com": {
+      "username": "prajin",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "remya@gmail.com": {
+      "username": "remya",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "remyas@gmail.com": {
+      "username": "remyas",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "saju@gmail.com": {
+      "username": "saju",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "sajus@gmail.com": {
+      "username": "sajus",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "sajush@gmail.com": {
+      "username": "sajush",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "sajushs@gmail.com": {
+      "username": "sajushs",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "rishik@gmail.com": {
+      "username": "rishik",
+      "password": "123",
+      "phone": "+91797596134",
+      "tasks": [],
+      "missed": []
+    },
+    "hayu@gmail.com": {
+      "username": "hayu",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "gh@gmail.com": {
+      "username": "gh",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "idh@gmail.com": {
+      "username": "idh",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "th@gmail.com": {
+      "username": "th",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "rw@gmail.com": {
+      "username": "djks",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "kavya@gmail.com": {
+      "username": "kavya",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "kl@gmail.com": {
+      "username": "oj",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "hidhaya@gmail.com": {
+      "username": "hidhaya",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "xf@gmail.com": {
+      "username": "gfx",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "xfc@gmail.com": {
+      "username": "gfxv",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "xfvc@gmail.com": {
+      "username": "gfxvb",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "xfvwc@gmail.com": {
+      "username": "gfxwvb",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "xfvwdc@gmail.com": {
+      "username": "gfxwvbd",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "v@gmail.com": {
+      "username": "gfxwvbdvvvvv",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vd@gmail.com": {
+      "username": "gfxwvbdvvvvvf",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vdd@gmail.com": {
+      "username": "gfxwvbdvvvvvfd",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vdsd@gmail.com": {
+      "username": "gfxwvbdvvvvvfds",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "vxdsd@gmail.com": {
+      "username": "gfxwvbdvxvvvvfds",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vxd@gmail.com": {
+      "username": "gfxvvvfds",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vxdr@gmail.com": {
+      "username": "gfxvvvf",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vxsdr@gmail.com": {
+      "username": "gfxvvvfs",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "dvxsdr@gmail.com": {
+      "username": "gfxvvvfsed",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "davxsdr@gmail.com": {
+      "username": "gfxvvvfseda",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "davxsedr@gmail.com": {
+      "username": "gfxvve",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "anitha@gmail.com": {
+      "username": "anitha",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "anithat@gmail.com": {
+      "username": "Ponanithat",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "anithsat@gmail.com": {
+      "username": "Ponanithats",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "anithssat@gmail.com": {
+      "username": "Ponanithatss",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "anithswsat@gmail.com": {
+      "username": "Ponanithatssw",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "anithswssat@gmail.com": {
+      "username": "Ponanitshatssw",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "anithwssat@gmail.com": {
+      "username": "Ponanit",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "anithwsat@gmail.com": {
+      "username": "Ponanitn",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "anithwsdat@gmail.com": {
+      "username": "Ponanitnsd",
+      "password": "1233",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "aniwsdat@gmail.com": {
+      "username": "Ponan",
+      "password": "1233",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "janika@gmail.com": {
+      "username": "janika",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "janikaa@gmail.com": {
+      "username": "janikaa",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "janikaaa@gmail.com": {
+      "username": "janikaaa",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "janikaaas@gmail.com": {
+      "username": "janikaaas",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "janikaasas@gmail.com": {
+      "username": "janikaaasss",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "suba@gmail.com": {
+      "username": "suba",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "rubak@gmail.com": {
+      "username": "rubak",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "rubask@gmail.com": {
+      "username": "rubaks",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sandy@gmail.com": {
+      "username": "sandy",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sandys@gmail.com": {
+      "username": "sandys",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "pal@gmail.com": {
+      "username": "pal",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "paln@gmail.com": {
+      "username": "paln",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "palnm@gmail.com": {
+      "username": "palnm",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "saru@gmail.com": {
+      "username": "saru",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "queny@gmail.com": {
+      "username": "queeny",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sherin@gmail.com": {
+      "username": "sherin",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "laksh@gmail.com": {
+      "username": "Lakshmi",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "lakssh@gmail.com": {
+      "username": "Lakshmis",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "laksssh@gmail.com": {
+      "username": "Lakshmiss",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "lakssssh@gmail.com": {
+      "username": "Lakshmisswss",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "hema@gmail.com": {
+      "username": "hema",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [
+        {
+          "title": "njn",
+          "description": " jnj",
+          "dueDate": "2025-05-23",
+          "completed": true
+        },
+        {
+          "title": "dressing bag",
+          "description": "today",
+          "dueDate": "2025-05-06",
+          "completed": false
+        }
+      ],
+      "missed": []
+    },
+    "krish@gmail.com": {
+      "username": "krish",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "gahy@gmail.com": {
+      "username": "gahy",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "divya@gmail.com": {
+      "username": "Divyashri",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [
+        {
+          "title": "free up",
+          "description": "ksjl",
+          "dueDate": "2025-05-10",
+          "completed": true
+        }
+      ],
+      "missed": []
+    },
+    "lekha1@gmail.com": {
+      "username": "Lekha1",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "lekha12@gmail.com": {
+      "username": "Lekha12",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "lekha123@gmail.com": {
+      "username": "Lekha123",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "prema@gmail.com": {
+      "username": "prema",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "prema1@gmail.com": {
+      "username": "prema1",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "prema12@gmail.com": {
+      "username": "prema12",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "prema123@gmail.com": {
+      "username": "prema123",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "prema153@gmail.com": {
+      "username": "prema17",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "s@gmail.com": {
+      "username": "premas",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "praveen@gmail.com": {
+      "username": "Praveen ",
+      "password": "123",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "suga@gmail.com": {
+      "username": "Suganya",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "suga1@gmail.com": {
+      "username": "Suganya1",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "suga1dd@gmail.com": {
+      "username": "Suganyda1",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "sudh@gmail.com": {
+      "username": "suganh",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "suedh@gmail.com": {
+      "username": "suganhe",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "suedhw@gmail.com": {
+      "username": "suganhew",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "suedhww@gmail.com": {
+      "username": "suganheww",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "vasu@gmail.com": {
+      "username": "Vasu",
+      "password": "12345",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "vasu1@gmail.com": {
+      "username": "Vasu1",
+      "password": "12345",
+      "phone": "+917975396134",
+      "tasks": [],
+      "missed": []
+    },
+    "vasug@gmail.com": {
+      "username": "Vasudevan",
+      "password": "12345",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "Codechef",
+          "description": "Coding the data",
+          "dueDate": "2025-05-23",
+          "completed": true
+        }
+      ],
+      "missed": []
+    },
+    "vasug1@gmail.com": {
+      "username": "Vasudevan1",
+      "password": "12345",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    }
+  }
+}
