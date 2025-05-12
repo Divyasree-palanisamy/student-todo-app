@@ -99,6 +99,7 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
+            
             <input
               type="text"
               placeholder="Task Description"

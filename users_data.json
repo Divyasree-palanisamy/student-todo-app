@@ -884,6 +884,27 @@
       "phone": "+917010669571",
       "tasks": [],
       "missed": []
+    },
+    "jaih@gmail.com": {
+      "username": "jaih",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "ranji@gmail.com": {
+      "username": "ranjith",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "Have to read CD",
+          "description": "for sem",
+          "dueDate": "2025-05-13",
+          "completed": false
+        }
+      ],
+      "missed": []
     }
   }
 }
