@@ -234,8 +234,8 @@ html,
 
 /* Default Theme */
 .default-theme .auth-page {
-    background-color: #1e3a8a;
-    color: white;
+    background-color: #8ca3e4;
+    color: rgb(36, 36, 36);
 }
 /* Default auth link color */
 .auth-link {
@@ -259,7 +259,7 @@ html,
 
 /* Default Theme link */
 .default-theme .auth-link {
-    color: #f0f0f0;
+    color: #5b28e7;
     /* White/light color for default (dark blue) background */
 }
 .app-container {
