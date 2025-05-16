@@ -150,7 +150,7 @@ html,
 /* Add Task Form */
 /* Add Task Form *//* Add Task Form */
 .add-task-form {
-    margin-top: 40px;
+    margin-top: -100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -301,4 +301,117 @@ html,
     cursor: pointer;
     text-decoration: underline;
     font-weight: 500;
+}/* Default Theme link */
+.default-theme .home-container {
+    background: #284db8;
+        color: rgb(36, 36, 36);
+}
+/* Home description text */
+.home-description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Divider */
+.theme-divider {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px solid;
+    transition: border-color 0.3s ease;
+}
+/* Base Welcome Box Style */
+.welcome-box {
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.welcome-box h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.welcome-box p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+/* Light Theme */
+.light-theme .welcome-box {
+    background-color: #f0f8ff;
+    color: #222;
+}
+
+/* Dark Theme */
+.dark-theme .welcome-box {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+/* Default Theme */
+.default-theme .welcome-box {
+    background-color: #355ec9;
+    color: #ffffff;
+}
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Style for all themes */
+.task-header img {
+    width: 50px;
+    height: 50px;
+}
+
+.task-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+/* Light Theme */
+.light-theme .task-header h1 {
+    color: #1e3a8a;
+    /* dark blue */
+}
+
+/* Dark Theme */
+.dark-theme .task-header h1 {
+    color: #f0f0f0;
+    /* light white */
+}
+
+/* Default Theme */
+.default-theme .task-header h1 {
+    color: #ffffff;
+    /* white */
+}
+.task-icon {
+    width: 50px;
+    height: 50px;
+    transition: filter 0.3s ease;
+}
+
+/* Light Theme - show black icon */
+.light-theme .task-icon {
+    filter: invert(0);
+    /* original black */
+}
+
+/* Dark Theme - show white icon */
+.dark-theme .task-icon {
+    filter: invert(1);
+    /* white */
+}
+
+/* Default Theme - white as well */
+.default-theme .task-icon {
+    filter: invert(1);
 }

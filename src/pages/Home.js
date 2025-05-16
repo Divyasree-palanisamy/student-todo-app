@@ -28,9 +28,10 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
       <nav className="navbar">
         <div className="navbar-left"></div>
         <div className="navbar-right">
-          <button onClick={() => navigate("/")}>Home</button>
-          <button onClick={() => navigate("/missed")}>Missed Tasks</button>
-          <button onClick={() => navigate("/Stats")}>Statistics</button> {/* ADDED THIS BUTTON */}
+          <button onClick={() => navigate("/")}>🏠 Home</button>
+<button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
+<button onClick={() => navigate("/Stats")}>📊 Statistics</button>
+{/* ADDED THIS BUTTON */}
              {/* 🚀 Logout button here after Statistics */}
       <button onClick={handleLogout} style={{ marginTop: '20px', padding: '10px 20px', background: 'crimson', color: 'white', border: 'none', borderRadius: '5px' }}>
         Logout
@@ -38,11 +39,21 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
 
 
         </div>
-      </nav>
+      </nav><div className="welcome-box">
+  <h2>👋 Welcome back!</h2>
+  <p>Manage your tasks efficiently and never miss a deadline.</p>
+</div>
 
       {/* Main Content */}
-      <div className="content">
-        <h1>Today's Tasks</h1>
+      <div className="content"><div className="task-header">
+      <img
+  src="https://cdn-icons-png.flaticon.com/512/943/943175.png"
+  alt="task-icon"
+  className="task-icon"
+/>
+
+  <h1>Today's Tasks</h1>
+</div>
 
         {/* Task Table */}
         <table className="task-table">
@@ -58,7 +69,9 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
           <tbody>
             {tasks.length === 0 ? (
               <tr>
-                <td colSpan="5">No tasks available</td>
+<td colSpan="5" style={{ padding: '30px', fontStyle: 'italic', color: '#777' }}>
+  🎉 You have no tasks! Add one using the form below to get started.
+</td>
               </tr>
             ) : (
               tasks.map((task, index) => {
@@ -91,6 +104,8 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
 
         {/* Add Task Form */}
         <div className="add-task-form">
+        <hr style={{ margin: '40px 0', borderColor: '#ccc' }} />
+
           <h2>Add New Task</h2>
           <form onSubmit={handleSubmit}>
             <input

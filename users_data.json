@@ -912,6 +912,51 @@
       "phone": "+917010669571",
       "tasks": [],
       "missed": []
+    },
+    "natj@gmail.com": {
+      "username": "Nataraj",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "haji@gmail.com": {
+      "username": "Haji",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "ds",
+          "description": "dsf,mn",
+          "dueDate": "2025-05-05",
+          "completed": true
+        },
+        {
+          "title": "sfa",
+          "description": "dgs5",
+          "dueDate": "2025-05-10",
+          "completed": true
+        },
+        {
+          "title": "dss",
+          "description": "dg",
+          "dueDate": "2025-05-17",
+          "completed": true
+        },
+        {
+          "title": "asfdg",
+          "description": "fh",
+          "dueDate": "2025-05-18",
+          "completed": true
+        },
+        {
+          "title": "ddj",
+          "description": "sdaf",
+          "dueDate": "2025-05-16",
+          "completed": true
+        }
+      ],
+      "missed": []
     }
   }
 }

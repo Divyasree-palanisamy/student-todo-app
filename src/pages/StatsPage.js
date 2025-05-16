@@ -58,7 +58,7 @@ export default function StatsPage({ tasks, missed }) {
             cursor: 'pointer',
           }}
         >
-          Back to Home
+          Back to Home 🏠
         </button>
       </div>
     </div>

@@ -9,8 +9,8 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
       <nav className="navbar">
         <div className="navbar-left"></div>
         <div className="navbar-right">
-          <button onClick={() => navigate("/")}>Home</button>
-          <button onClick={() => navigate("/missed")}>Missed Tasks</button>
+          <button onClick={() => navigate("/")}>🏠 Home</button>
+          <button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
         </div>
       </nav>
 
