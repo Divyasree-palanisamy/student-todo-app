@@ -10,6 +10,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import StudyMaterials from './components/StudyMaterials'; // ✅ Import this
+
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -138,6 +140,8 @@ function App() {
       <Navbar theme={theme} setTheme={setTheme} />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
+        <Route path="/study-material" element={<StudyMaterials />} /> {/* ✅ Add this */}
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route

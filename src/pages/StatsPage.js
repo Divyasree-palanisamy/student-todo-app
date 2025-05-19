@@ -25,40 +25,74 @@ export default function StatsPage({ tasks, missed }) {
     console.log(data);
   };
 
+
   return (
-    <div className="p-4 flex flex-col min-h-screen items-center bg-gray-50">
+    <div
+      className="p-6 min-h-screen flex flex-col items-center text-white"
+      style={{
+        background: 'linear-gradient(135deg, #4b69c2, #314185)',
+        fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
+      }}
+    >
+      {/* Page Title */}
+      <h1 className="text-4xl font-bold mb-4 mt-4 drop-shadow-lg text-center">
+        📊 Task Statistics
+      </h1>
+      <p className="text-lg text-gray-200 mb-6 max-w-2xl text-center italic">
+        "Success is the sum of small efforts, repeated day in and day out." — Robert Collier
+      </p>
+
       {/* View Buttons */}
-      <div className="flex gap-4 mb-6 justify-center">
-        <button onClick={() => setView('daily')} className="bg-blue-500 text-white px-4 py-2 rounded">
-          Daily
-        </button>
-        <button onClick={() => setView('weekly')} className="bg-blue-500 text-white px-4 py-2 rounded">
-          Weekly
-        </button>
-        <button onClick={() => setView('monthly')} className="bg-blue-500 text-white px-4 py-2 rounded">
-          Monthly
-        </button>
+      <div className="flex gap-4 mb-8 justify-center">
+        {['daily', 'weekly', 'monthly'].map((type) => (
+          <button
+            key={type}
+            onClick={() => setView(type)}
+            className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 ${
+              view === type
+                ? 'bg-white text-blue-700 shadow-lg scale-105'
+                : 'bg-blue-600 hover:bg-blue-700 text-white'
+            }`}
+          >
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </button>
+        ))}
       </div>
 
-      {/* Stats */}
-      <div className="flex-grow flex flex-col items-center w-full max-w-md">
+      {/* Stats Component */}
+      <div className="w-full max-w-3xl bg-white bg-opacity-10 rounded-xl p-6 shadow-md backdrop-blur-md mb-6">
         <Stats tasks={tasks} missed={missed} view={view} />
       </div>
 
+      {/* Summary Section */}
+      <div className="text-center mb-10">
+        <h2 className="text-xl font-semibold mb-2">📅 Overview</h2>
+        <p className="text-gray-200">
+          You have completed <span className="font-bold text-green-300">{tasks.length}</span> tasks,
+          and missed <span className="font-bold text-red-300">{missed.length}</span>.
+        </p>
+      </div>
+
       {/* Back Button */}
-      <div className="flex justify-center mt-8 mb-4">
+      <div className="flex justify-center">
         <button
           onClick={() => navigate('/')}
-          style={{
-            backgroundColor: '#4CAF50',
-            color: 'white',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            border: 'none',
-            cursor: 'pointer',
-          }}
+          className="bg-green-500 hover:bg-green-600 transition-all duration-300 text-white px-6 py-3 rounded-xl shadow-lg text-lg"
         >
-          Back to Home 🏠
+          {/* Back Button - Bottom Center */}
+          <div className="flex flex-col min-h-screen items-center bg-gray-50" style={{ background: 'linear-gradient(135deg, #4b69c2, #314185)' }}>
+{/* Back Button - Bottom Center of Page */}
+<div className="w-full flex justify-center mt-auto mb-6">
+  <button
+    onClick={() => navigate('/')}
+    className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg text-lg transition-all duration-300"
+  >
+    Back to Home 🏠
+  </button>
+</div>
+
+</div>
+
         </button>
       </div>
     </div>

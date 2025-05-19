@@ -302,17 +302,82 @@ html,
     text-decoration: underline;
     font-weight: 500;
 }/* Default Theme link */
+
+/* General container */
 .default-theme .home-container {
-    background: #284db8;
-        color: rgb(36, 36, 36);
-}
-/* Home description text */
-.home-description {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    transition: color 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #4b69c2, #314185);
+    /* subtle gradient */
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background 0.5s ease;
 }
 
+/* Home description */
+.home-description {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    max-width: 800px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.home-description:hover {
+    color: #ffffff;
+    transform: scale(1.02);
+}
+
+/* Headings (optional) */
+.home-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Optional button for call to action */
+.home-button {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #4b69c2;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #e0e0e0;
+    color: #1c2c5a;
+}
+
+/* Responsive typography */
+@media screen and (max-width: 768px) {
+    .home-title {
+        font-size: 2rem;
+    }
+
+    .home-description {
+        font-size: 1.1rem;
+    }
+
+    .home-button {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+    }
+}
 /* Divider */
 .theme-divider {
     margin: 40px 0;
@@ -353,7 +418,7 @@ html,
 
 /* Default Theme */
 .default-theme .welcome-box {
-    background-color: #355ec9;
+    background-color: #b0b7c6;
     color: #ffffff;
 }
 .task-header {
@@ -414,4 +479,181 @@ html,
 /* Default Theme - white as well */
 .default-theme .task-icon {
     filter: invert(1);
+}
+/* Main container */
+/* Page Wrapper */
+.study-page-wrapper {
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+    background: linear-gradient(135deg, #4b69c2, #314185);
+}
+
+/* Default Theme Background */
+.theme-default .study-page-wrapper {
+    background: linear-gradient(175deg, #c2cef2, #6d7cba);
+    color: #ffffff;
+}
+
+/* Light Theme Background */
+.theme-light .study-page-wrapper {
+    background-color: #f5f5f5;
+    color: #111111;
+}
+
+/* Dark Theme Background */
+.theme-dark .study-page-wrapper {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+/* Study Container */
+.study-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+    transition: background-color 0.3s, color 0.3s;
+    overflow: hidden;
+}
+
+/* Container Background per Theme */
+.theme-default .study-container {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+}
+
+.theme-light .study-container {
+    background-color: #ffffff;
+    color: #111111;
+}
+
+.theme-dark .study-container {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+/* Typography */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* Input Row */
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.btn.add {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn.upload {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn.link {
+    background: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Subject Tabs */
+.subject-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.subject-tab {
+    background-color: #f0f0f0;
+    color: #222;
+    padding: 10px 14px;
+    border-radius: 10px;
+    position: relative;
+    min-width: 100px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.subject-tab.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.subject-tab .delete-btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.upload-section input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* File Table */
+.file-table {
+    overflow-x: auto;
+}
+
+.file-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-table th,
+.file-table td {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+/* Muted Text */
+.muted {
+    color: gray;
 }
