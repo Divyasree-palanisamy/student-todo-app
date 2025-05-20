@@ -10,7 +10,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-import StudyMaterials from './components/StudyMaterials'; // ✅ Import this
+import StudyMaterials from './components/StudyMaterials';
 
 
 function App() {

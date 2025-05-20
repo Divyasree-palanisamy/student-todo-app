@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
-export default function StudyMaterials() {
+export default function StudyMaterials({theme = "theme-default" }) {
+  const navigate = useNavigate(); // ✅ Move it here
+
   const [subjects, setSubjects] = useState(() => {
     const saved = localStorage.getItem("studySubjects");
     return saved ? JSON.parse(saved) : {};
@@ -60,8 +63,8 @@ export default function StudyMaterials() {
 
   return (
     
-    <div className="study-page-wrapper theme-default">
-      <div className="study-container">
+<div className={`study-page-wrapper ${theme}`}>
+<div className="study-container">
         <h2 className="title">Study Materials</h2>
 
         <div className="input-row">
@@ -142,7 +145,17 @@ export default function StudyMaterials() {
             </table>
           </div>
         )}
+        
+<div className="w-full flex justify-center mt-auto mb-6">
+  <button
+    onClick={() => navigate('/')}
+    className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg text-lg transition-all duration-300"
+  >
+    Back to Home 🏠
+  </button>
+</div>
       </div>
     </div>
+
   );
 }

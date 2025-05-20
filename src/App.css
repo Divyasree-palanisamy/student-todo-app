@@ -64,6 +64,7 @@ html,
     flex: 1;
     width: 90%;
     margin: 40px auto;
+    padding-top: 40px;
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
@@ -427,6 +428,7 @@ html,
     justify-content: center;
     gap: 15px;
     margin-top: 20px;
+        /* <== THIS IS CAUSING EXTRA GAP IN DEFAULT THEME ONLY */
 }
 
 /* Style for all themes */
@@ -480,6 +482,8 @@ html,
 .default-theme .task-icon {
     filter: invert(1);
 }
+
+
 /* Main container */
 /* Page Wrapper */
 .study-page-wrapper {
@@ -492,7 +496,7 @@ html,
 
 /* Default Theme Background */
 .theme-default .study-page-wrapper {
-    background: linear-gradient(175deg, #c2cef2, #6d7cba);
+    background: linear-gradient(15deg, #c2cef2, #6d7cba);
     color: #ffffff;
 }
 

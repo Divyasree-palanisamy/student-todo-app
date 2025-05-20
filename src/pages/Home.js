@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 function Home({ tasks, addTask, completeTask, deleteTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -29,11 +28,12 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
       <nav className="navbar">
         <div className="navbar-left"></div>
         <div className="navbar-right">
-        <button onClick={() => navigate("/study-material")}>📚 Study Material</button>
 
           <button onClick={() => navigate("/")}>🏠 Home</button>
 <button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
 <button onClick={() => navigate("/Stats")}>📊 Statistics</button>
+<button onClick={() => navigate("/study-material")}>📚 Study Material</button>
+
 {/* ADDED THIS BUTTON */}
              {/* 🚀 Logout button here after Statistics */}
       <button onClick={handleLogout} style={{ marginTop: '20px', padding: '10px 20px', background: 'crimson', color: 'white', border: 'none', borderRadius: '5px' }}>
