@@ -23,12 +23,11 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
   };
 
   return (
-    <div className="home-container">
+    <div className="home-container" style={{    background: 'linear-gradient(135deg, #4b69c2, #314185)'}}>
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-left"></div>
         <div className="navbar-right">
-
           <button onClick={() => navigate("/")}>🏠 Home</button>
 <button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
 <button onClick={() => navigate("/Stats")}>📊 Statistics</button>
