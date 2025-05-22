@@ -39,9 +39,7 @@ export default function StatsPage({ tasks, missed }) {
     
         <div
           className="p-6 min-h-screen flex flex-col items-center text-white"
-          style={{ background: 'linear-gradient(135deg, #4b69c2, #314185)',
-            fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
-          }}
+
         >
           {/* Page Title */}
           <h1 className="text-4xl font-bold mb-4 mt-4 drop-shadow-lg text-center">

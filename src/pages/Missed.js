@@ -4,7 +4,7 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
   const navigate = useNavigate();
 
   return (
-    <div className="app-container" style={{    background: 'linear-gradient(135deg, #4b69c2, #314185)'}}>  {/* Use app-container to apply full background */}
+    <div className="app-container">  {/* Use app-container to apply full background */}
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-left"></div>

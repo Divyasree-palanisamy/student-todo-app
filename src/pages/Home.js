@@ -23,7 +23,7 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
   };
 
   return (
-    <div className="home-container" style={{    background: 'linear-gradient(135deg, #4b69c2, #314185)'}}>
+    <div className="home-container" >
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-left"></div>

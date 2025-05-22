@@ -963,6 +963,27 @@
         }
       ],
       "missed": []
+    },
+    "raj@gmail.com": {
+      "username": "Raj",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [],
+      "missed": []
+    },
+    "meg@gmail.com": {
+      "username": "Megan",
+      "password": "123",
+      "phone": "+917010669571",
+      "tasks": [
+        {
+          "title": "Codechef",
+          "description": "attend coding contest",
+          "dueDate": "2025-05-23",
+          "completed": true
+        }
+      ],
+      "missed": []
     }
   }
 }
