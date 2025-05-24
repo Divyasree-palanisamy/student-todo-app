@@ -428,6 +428,8 @@ html,
     filter: invert(1);
 }
 /* Study Container */
+
+
 .study-container {
     max-width: 800px;
     margin: auto;
