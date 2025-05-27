@@ -581,3 +581,97 @@ html,
 .muted {
     color: gray;
 }
+
+/* Light Theme Calendar */
+.light-theme .react-calendar {
+    background-color: #fff;
+    color: #222;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Dark Theme Calendar */
+.dark-theme .react-calendar {
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Default Theme Calendar */
+.default-theme .react-calendar {
+    background-color: #6b8dfb;
+    color: white;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* General Calendar Cell Styling */
+.react-calendar__tile {
+    padding: 12px 6px;
+    transition: 0.2s;
+    border-radius: 8px;
+}
+
+/* Highlight Current Day */
+.react-calendar__tile--now {
+    background: #007bff !important;
+    color: white;
+}
+
+/* Highlight Selected */
+.react-calendar__tile--active {
+    background: #4caf50 !important;
+    color: white;
+}
+.react-calendar__tile {
+    height: 100px !important;
+    /* Make tiles taller */
+    padding: 6px 4px !important;
+    /* Add some padding */
+    font-size: 13px !important;
+    /* Slightly bigger font */
+    overflow-y: auto;
+    /* Scroll if overflow */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.calendar-container {
+    width: 600px;
+    /* or whatever width you want */
+    max-width: 90vw;
+    /* responsive max width */
+    margin: 20px auto;
+    /* center horizontally */
+}
+
+.custom-calendar {
+    width: 100% !important;
+    /* take full container width */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.tasks-in-calendar {
+    width: 100%;
+    max-height: 80px;
+    /* limit max height */
+    overflow-y: auto;
+    /* vertical scroll if needed */
+    padding-right: 3px;
+    /* some padding so scrollbar doesn't cover text */
+}
+
+.calendar-task-item {
+    white-space: normal;
+    /* allow wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    /* break long words */
+    font-size: 12px;
+    margin-bottom: 2px;
+    cursor: default;
+}

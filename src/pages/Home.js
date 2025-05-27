@@ -1,16 +1,41 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+// Add normalizeDate function here
+function normalizeDate(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
 
 function Home({ tasks, addTask, completeTask, deleteTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
+  // Remove this line from original (it causes error):
+  // const normalizedDate = normalizeDate(new Date(dueDateInput)); 
+
+  const [date, setDate] = useState(new Date());
+
   const navigate = useNavigate();
+
+  // Group tasks by dueDate string (format: YYYY-MM-DD)
+  const tasksByDate = tasks.reduce((acc, task) => {
+    if (task.dueDate) {
+      acc[task.dueDate] = acc[task.dueDate] || [];
+      acc[task.dueDate].push(task);
+    }
+    return acc;
+  }, {});
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      addTask(title, description, dueDate);
+      // Normalize and format the dueDate before adding
+      const normalizedDueDate = dueDate ? normalizeDate(new Date(dueDate)) : null;
+      const dueDateString = normalizedDueDate ? normalizedDueDate.toISOString().slice(0, 10) : null;
+
+      addTask(title, description, dueDateString);
       setTitle('');
       setDescription('');
       setDueDate('');
@@ -109,8 +134,9 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
               })
             )}
           </tbody>
-        </table>
-
+        </table>    
+        
+        
         {/* Add Task Form */}
         <div className="add-task-form">
           <hr style={{ margin: '40px 0', borderColor: '#ccc' }} />
@@ -143,6 +169,32 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
               }}
             />
             <button type="submit">Add Task</button>
+
+            <Calendar
+              onChange={setDate}
+              value={date}
+              className="custom-calendar"
+              tileContent={({ date, view }) => {
+                if (view === 'month') {
+                  const dateStr = date.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+                  const dayTasks = tasksByDate[dateStr] || [];
+                  return (
+                    <div className="tasks-in-calendar">
+                      {dayTasks.map((task, idx) => (
+                        <div
+                          key={idx}
+                          className="calendar-task-item"
+                          title={task.title}
+                        >
+                          • {task.title.length > 15 ? task.title.slice(0, 15) + '...' : task.title}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+                return null;
+              }}
+            />
           </form>
         </div>
       </div>
