@@ -1,3 +1,5 @@
+inorder to apply the high ui/ux effect to my website
+
 /* General Reset */
 body,
 html,
@@ -7,7 +9,7 @@ html,
     padding: 0;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.5s ease, color 0.5s ease;
-    
+
 }
 
 /* App Container */
@@ -427,6 +429,7 @@ html,
 .default-theme .task-icon {
     filter: invert(1);
 }
+
 /* Study Container */
 
 
