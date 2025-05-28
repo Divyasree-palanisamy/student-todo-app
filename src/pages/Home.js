@@ -7,6 +7,10 @@ import 'react-calendar/dist/Calendar.css';
 function normalizeDate(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
+function parseLocalDate(dateString) {
+  const [year, month, day] = dateString.split('-').map(Number);
+  return new Date(year, month - 1, day);
+}
 
 function Home({ tasks, addTask, completeTask, deleteTask }) {
   const [title, setTitle] = useState('');
@@ -27,20 +31,17 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
     }
     return acc;
   }, {});
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title.trim() && description.trim()) {
-      // Normalize and format the dueDate before adding
-      const normalizedDueDate = dueDate ? normalizeDate(new Date(dueDate)) : null;
-      const dueDateString = normalizedDueDate ? normalizedDueDate.toISOString().slice(0, 10) : null;
-
-      addTask(title, description, dueDateString);
+    if (title.trim() && description.trim() && dueDate) {
+      // Use dueDate string directly without any parsing or conversion
+      addTask(title, description, dueDate);  // dueDate is already 'YYYY-MM-DD'
       setTitle('');
       setDescription('');
       setDueDate('');
     }
   };
+  
 
   const handleLogout = () => {
     localStorage.removeItem('currentUser');
@@ -117,7 +118,7 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
                   <tr key={index}>
                     <td>{task.title}</td>
                     <td>{task.description}</td>
-                    <td>{task.dueDate ? new Date(task.dueDate).toLocaleDateString() : '-'}</td>
+                    <td>{task.dueDate || '-'}</td>
                     <td>{task.completed ? 'Completed' : isMissed ? 'Missed' : 'Pending'}</td>
                     <td>
                       {!task.completed && (
@@ -176,7 +177,8 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
               className="custom-calendar"
               tileContent={({ date, view }) => {
                 if (view === 'month') {
-                  const dateStr = date.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+                  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+                  const dateStr = localDate.toISOString().split('T')[0];
                   const dayTasks = tasksByDate[dateStr] || [];
                   return (
                     <div className="tasks-in-calendar">
