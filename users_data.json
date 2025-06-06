@@ -1064,7 +1064,14 @@
       "username": "Lavanya",
       "password": "123",
       "phone": "+917010669571",
-      "tasks": [],
+      "tasks": [
+        {
+          "title": "oijodijg",
+          "description": "s;lk",
+          "dueDate": "2025-07-07",
+          "completed": false
+        }
+      ],
       "missed": []
     }
   }
