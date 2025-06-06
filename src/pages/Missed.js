@@ -20,7 +20,7 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
 
       {/* Main Content */}
       <div className="content">
-        <h1>Missed Tasks</h1>
+        <h1>⏰ Missed Tasks</h1>
 
         {/* Task Table */}
         <table className="task-table">

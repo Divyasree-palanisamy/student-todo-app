@@ -76,7 +76,7 @@ export default function StudyMaterials({theme = "theme-default" }) {
       {/* Main Content */}
       <div className={`study-page-wrapper ${theme}`}>
         <div className="study-container">
-          <h2 className="title">Study Materials</h2>
+          <h2 className="title">📚 Study Materials</h2>
   
           <div className="input-row">
             <input
