@@ -85,7 +85,7 @@ export default function StudyMaterials({theme = "theme-default" }) {
               placeholder="New Subject Name"
             />
             <button className="btn add" onClick={addSubject}>
-              Add
+            👉Add
             </button>
           </div>
   
