@@ -1,84 +1,96 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 function Signup() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState(''); // ✅ ADDED
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    phone: '+917010669571',
+  });
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
 
-    const users = JSON.parse(localStorage.getItem('users')) || {};
-
-    if (users[email]) {
-      toast.error("User already exists! Please login.");
+    // Basic validation
+    if (!formData.username || !formData.email || !formData.password) {
+      setError('Please fill in all required fields.');
+      setLoading(false);
       return;
     }
 
-    // Store in localStorage as fallback
-    users[email] = { username, password, phone, tasks: [], missed: [] };
-    localStorage.setItem('users', JSON.stringify(users));
-    localStorage.setItem('phone', phone); // Optional
-
     try {
-      // Send to backend and trigger SMS
-      await axios.post('http://localhost:5000/api/users', {
-        email,
-        username,
-        password,
-        phone,
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      toast.success("Signup Successful! Welcome message sent.");
-      navigate('/login');
-    } catch (error) {
-  console.error('❌ Error syncing with server:', error.response?.data || error.message);
-  toast.error("Signup failed to sync with backend: " + (error.response?.data || error.message));
-}
-};
 
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Signup failed');
+      }
+
+      toast.success('Signup successful! Please log in.');
+      // Set a flag to indicate a new user just signed up
+      localStorage.setItem('isNewUser', 'true');
+      navigate('/login', { replace: true });
+    } catch (err) {
+      setError(err.message);
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="auth-page">
       <h2>Signup</h2>
       <form onSubmit={handleSignup} className="auth-form">
+        {error && <p className="error-message">{error}</p>}
         <input
           type="text"
+          name="username"
           placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={formData.username}
+          onChange={handleChange}
           required
         />
         <input
           type="email"
+          name="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
           required
         />
         <input
           type="password"
+          name="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
           required
         />
-        <input
-          type="tel"
-          placeholder="Phone Number (e.g. +911234567890)"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-        />
-        <button type="submit" className="auth-button">Signup</button>
+        <button type="submit" className="auth-button" disabled={loading}>
+          {loading ? 'Signing up...' : 'Signup'}
+        </button>
       </form>
-
-      <p>Already have an account? <Link to="/login" className="auth-link">Login here</Link></p>
+      <p>
+        Already have an account? <Link to="/login" className="auth-link">Login here</Link>
+      </p>
     </div>
   );
 }

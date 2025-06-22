@@ -5,19 +5,6 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
 
   return (
     <div className="app-container">  {/* Use app-container to apply full background */}
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-left"></div>
-        <div className="navbar-right">
-          <button onClick={() => navigate("/")}>🏠 Home</button>
-          <button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
-          <button onClick={() => navigate("/Stats")}>📊 Statistics</button>
-          <button onClick={() => navigate("/study-material")}>📚 Study Material</button>
-
-
-        </div>
-      </nav>
-
       {/* Main Content */}
       <div className="content">
         <h1>⏰ Missed Tasks</h1>
@@ -28,6 +15,7 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
             <tr>
               <th>Task Title</th>
               <th>Task Description</th>
+              <th>Due Date</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -35,19 +23,20 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
           <tbody>
             {missed.length === 0 ? (
               <tr>
-                <td colSpan="4">No missed tasks 🎉</td>
+                <td colSpan="5">No missed tasks 🎉</td>
               </tr>
             ) : (
-              missed.map((task, index) => (
-                <tr key={index}>
+              missed.map((task) => (
+                <tr key={task.id}>
                   <td>{task.title}</td>
                   <td>{task.description}</td>
+                  <td>{task.due_date ? new Date(task.due_date).toISOString().split('T')[0] : '-'}</td>
                   <td>Missed</td>
                   <td>
-                    <button className="complete-btn" onClick={() => completeMissedTask(index)}>
+                    <button className="complete-btn" onClick={() => completeMissedTask(task.id)}>
                       Complete
                     </button>
-                    <button className="delete-btn" onClick={() => deleteMissedTask(index)}>
+                    <button className="delete-btn" onClick={() => deleteMissedTask(task.id)}>
                       Delete
                     </button>
                   </td>

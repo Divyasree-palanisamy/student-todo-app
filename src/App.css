@@ -9,7 +9,6 @@ html,
     padding: 0;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.5s ease, color 0.5s ease;
-
 }
 
 /* App Container */
@@ -21,19 +20,9 @@ html,
 }
 
 /* Themes */
-.default-theme {
-    background-color: #608cfd;
-    color: white;
-}
-
 .light-theme {
     background-color: #f5f5f5;
     color: #222;
-}
-
-.dark-theme {
-    background-color: #121212;
-    color: #f0f0f0;
 }
 
 /* Page Card Container */
@@ -52,14 +41,6 @@ html,
 
 .light-theme .page-container {
     background: white;
-}
-
-.dark-theme .page-container {
-    background: #1f1f1f;
-}
-
-.default-theme .page-container {
-    background: #7894e7;
 }
 
 /* Main Content Area */
@@ -90,14 +71,50 @@ html,
     margin: 0;
 }
 
-.navbar-right button {
-    background: white;
-    border: none;
-    margin-left: 15px;
-    padding: 8px 20px;
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-link {
+    color: white;
+    background: #1971c2;
+    text-decoration: none;
     font-size: 16px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    margin-right: 8px;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    display: inline-block;
+}
+
+.navbar-link:last-child {
+    margin-right: 0;
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+    background: #339af0;
+    color: #fff;
+}
+
+.navbar-button.logout-button {
+    background-color: #e74c3c;
+    /* A distinct red for logout */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 6px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.navbar-button.logout-button:hover {
+    background-color: #c0392b;
 }
 
 /* Task Table */
@@ -117,12 +134,6 @@ html,
 /* Table Header Background */
 .task-table th {
     background-color: #dff9fb;
-}
-
-/* Fix table header text color for dark/default themes */
-.default-theme .task-table th,
-.dark-theme .task-table th {
-    color: black;
 }
 
 /* Light theme table header text */
@@ -154,12 +165,17 @@ html,
 /* Add Task Form */
 /* Add Task Form */
 .add-task-form {
-    margin-top: -100px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    /* Space between each field */
+    padding-top: 10px;
+}
+
+.add-task-form h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .add-task-form input,
@@ -201,8 +217,10 @@ html,
 .auth-page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .auth-form {
@@ -231,18 +249,6 @@ html,
     color: #222;
 }
 
-/* Dark Theme */
-.dark-theme .auth-page {
-    background-color: #121212;
-    color: #f0f0f0;
-}
-
-/* Default Theme */
-.default-theme .auth-page {
-    background-color: #779afa;
-    color: rgb(36, 36, 36);
-}
-
 /* Default auth link color */
 .auth-link {
     cursor: pointer;
@@ -255,18 +261,6 @@ html,
 .light-theme .auth-link {
     color: #1e3a8a;
     /* Dark blue for light background */
-}
-
-/* Dark Theme link */
-.dark-theme .auth-link {
-    color: #4dabf7;
-    /* Light blue for dark background */
-}
-
-/* Default Theme link */
-.default-theme .auth-link {
-    color: #5b28e7;
-    /* White/light color for default (dark blue) background */
 }
 
 .app-container {
@@ -311,12 +305,6 @@ html,
     font-weight: 500;
 }
 
-/* Default Theme link */
-.default-theme .home-container {
-    background: #4571f6;
-    color: rgb(36, 36, 36);
-}
-
 /* Home description text */
 .home-description {
     font-size: 1.2rem;
@@ -357,18 +345,6 @@ html,
     color: #222;
 }
 
-/* Dark Theme */
-.dark-theme .welcome-box {
-    background-color: #323232;
-    color: #f0f0f0;
-}
-
-/* Default Theme */
-.default-theme .welcome-box {
-    background-color: #7da0f7;
-    color: #ffffff;
-}
-
 .task-header {
     display: flex;
     align-items: center;
@@ -395,18 +371,6 @@ html,
     /* dark blue */
 }
 
-/* Dark Theme */
-.dark-theme .task-header h1 {
-    color: #f0f0f0;
-    /* light white */
-}
-
-/* Default Theme */
-.default-theme .task-header h1 {
-    color: #ffffff;
-    /* white */
-}
-
 .task-icon {
     width: 50px;
     height: 50px;
@@ -417,17 +381,6 @@ html,
 .light-theme .task-icon {
     filter: invert(0);
     /* original black */
-}
-
-/* Dark Theme - show white icon */
-.dark-theme .task-icon {
-    filter: invert(1);
-    /* white */
-}
-
-/* Default Theme - white as well */
-.default-theme .task-icon {
-    filter: invert(1);
 }
 
 /* Study Container */
@@ -445,19 +398,9 @@ html,
 }
 
 /* Container Background per Theme */
-.theme-default .study-container {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-}
-
 .theme-light .study-container {
     background-color: #ffffff;
     color: #111111;
-}
-
-.theme-dark .study-container {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
 }
 
 /* Typography */
@@ -590,22 +533,6 @@ html,
     padding: 10px;
 }
 
-/* Dark Theme Calendar */
-.dark-theme .react-calendar {
-    background-color: #1f1f1f;
-    color: #f0f0f0;
-    border-radius: 12px;
-    padding: 10px;
-}
-
-/* Default Theme Calendar */
-.default-theme .react-calendar {
-    background-color: #6b8dfb;
-    color: white;
-    border-radius: 12px;
-    padding: 10px;
-}
-
 /* General Calendar Cell Styling */
 .react-calendar__tile {
     padding: 12px 6px;
@@ -624,6 +551,7 @@ html,
     background: #4caf50 !important;
     color: white;
 }
+
 .react-calendar__tile {
     height: 100px !important;
     /* Make tiles taller */
@@ -639,39 +567,607 @@ html,
     justify-content: flex-start;
 }
 
+/* --- Calendar Styles --- */
 .calendar-container {
-    width: 600px;
-    /* or whatever width you want */
-    max-width: 90vw;
-    /* responsive max width */
-    margin: 20px auto;
-    /* center horizontally */
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .custom-calendar {
     width: 100% !important;
-    /* take full container width */
+    border: none !important;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-.tasks-in-calendar {
-    width: 100%;
-    max-height: 80px;
-    /* limit max height */
-    overflow-y: auto;
-    /* vertical scroll if needed */
-    padding-right: 3px;
-    /* some padding so scrollbar doesn't cover text */
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
 }
 
+/* All calendar tiles get a very light background */
+.custom-calendar .react-calendar__tile {
+    background-color: #f7fbff;
+    color: #333;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    height: 100px;
+    text-align: left;
+    padding: 5px;
+}
+
+/* Event days get a distinct blue background */
+.custom-calendar .react-calendar__tile:has(.calendar-task-item) {
+    background-color: #339af0;
+    color: #fff;
+    position: relative;
+}
+
+/* Today's date */
+.custom-calendar .react-calendar__tile--now {
+    background: #ffe066 !important;
+    color: #333 !important;
+    font-weight: bold;
+}
+
+/* Today + event: a more vibrant blue */
+.custom-calendar .react-calendar__tile--now:has(.calendar-task-item) {
+    background: #1971c2 !important;
+    color: #fff !important;
+}
+
+/* Event text: always visible */
 .calendar-task-item {
-    white-space: normal;
-    /* allow wrapping */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-word;
-    /* break long words */
     font-size: 12px;
-    margin-bottom: 2px;
-    cursor: default;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1971c2;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin-top: 2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* If the event is on a non-event day (shouldn't happen, but for safety) */
+.custom-calendar .react-calendar__tile:not(:has(.calendar-task-item)) .calendar-task-item {
+    color: #1971c2;
+    background: #e3f2fd;
+}
+
+.tasks-in-calendar {
+    margin-top: 5px;
+}
+
+/* General App Text Color */
+body,
+.App {
+    color: #333;
+    /* Making default text darker */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #111;
+    /* Even darker for headers */
+}
+
+.react-calendar__tile.has-event {
+    background: #f0f8ff;
+}
+
+.react-calendar__tile--now {
+    border: 2px solid #007bff;
+}
+
+.react-calendar__tile.has-event abbr {
+    color: #007bff !important;
+    font-weight: bold;
+}
+
+.App.dark-theme {
+    background-color: #121212;
+    color: #fff;
+    /* This will make all default text white */
+}
+
+/* This is the definitive fix. 
+   It's specific enough to override the general h2 style. */
+.App.dark-theme h2 {
+    color: #fff !important;
+    /* Use !important to ensure this rule wins */
+}
+
+.App.dark-theme p {
+    color: #f0f0f0;
+}
+
+/* Remove the isolated background color for auth-page */
+/* .dark .auth-page {
+    background-color: #121212;
+} */
+
+.dark .auth-page h2 {
+    color: #fff;
+}
+
+.dark .auth-page p {
+    color: #fff;
+}
+
+/* --- Calendar Styles --- */
+.calendar-container {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.custom-calendar {
+    width: 100% !important;
+    border: none !important;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* General tile styling */
+.custom-calendar .react-calendar__tile {
+    color: #333;
+    /* Darker text for dates */
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+/* Hover and active states */
+.custom-calendar .react-calendar__tile:enabled:hover,
+.custom-calendar .react-calendar__tile:enabled:focus {
+    background-color: #e6e6e6;
+}
+
+/* Today's date */
+.custom-calendar .react-calendar__tile--now {
+    background: #f0f8ff !important;
+    font-weight: bold;
+}
+
+/* Active/selected date */
+.custom-calendar .react-calendar__tile--active {
+    background: #007bff !important;
+    color: white !important;
+}
+
+/* Navigation buttons */
+.custom-calendar .react-calendar__navigation button {
+    color: #007bff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Calendar Dot Styling */
+.calendar-dot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+}
+
+.calendar-dot {
+    height: 6px;
+    width: 6px;
+    background-color: #ff4d4f;
+    /* A visible red color */
+    border-radius: 50%;
+}
+
+/* General App Text Color */
+body,
+.App {
+    color: #333;
+    /* Making default text darker */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #111;
+    /* Even darker for headers */
+}
+
+/* Welcome Box Styling */
+.welcome-box {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.welcome-box h2 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.welcome-box p {
+    color: #34495e;
+}
+
+/* Add Task Form Styling */
+.add-task-form {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+
+/* Default Theme */
+.theme-default .calendar-event-item {
+    background: #007bff;
+    color: #fff;
+}
+
+.theme-default .react-calendar__tile.has-event {
+    background: #e6f7ff;
+}
+
+.theme-default .react-calendar__tile--now {
+    border: 2px solid #007bff;
+}
+
+.theme-default .react-calendar__tile.has-event abbr {
+    color: #007bff !important;
+}
+
+/* Dark Theme */
+.theme-dark .calendar-event-item {
+    background: #222;
+    color: #ffeb3b;
+}
+
+.theme-dark .react-calendar__tile.has-event {
+    background: #333;
+}
+
+.theme-dark .react-calendar__tile--now {
+    border: 2px solid #ffeb3b;
+}
+
+.theme-dark .react-calendar__tile.has-event abbr {
+    color: #ffeb3b !important;
+}
+
+/* Pastel Theme */
+.theme-pastel .calendar-event-item {
+    background: #f7b2ad;
+    color: #3d405b;
+}
+
+.theme-pastel .react-calendar__tile.has-event {
+    background: #ffe5ec;
+}
+
+.theme-pastel .react-calendar__tile--now {
+    border: 2px solid #f7b2ad;
+}
+
+.theme-pastel .react-calendar__tile.has-event abbr {
+    color: #f28482 !important;
+}
+
+/* Make the date number bold and visible in all themes */
+.react-calendar__tile.has-event abbr {
+    font-weight: bold;
+    color: inherit !important;
+}
+
+.theme-dark .auth-page h2 {
+    color: #fff;
+}
+
+.theme-dark .auth-page label {
+    color: #fff;
+}
+
+.theme-dark .auth-link {
+    color: #fff;
+}
+
+.dark .auth-container h2 {
+    color: #fff;
+}
+
+.dark .auth-page h2 {
+    color: #fff;
+}
+
+.dark .auth-page p {
+    color: #fff;
+}
+
+.dark .auth-container h2 {
+    color: #fff;
+}
+
+.dark .auth-page {
+    background-color: #121212;
+}
+
+.dark .auth-page h2 {
+    color: #fff;
+}
+
+.dark .auth-page p {
+    color: #fff;
+}
+
+.stats-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 32px 0 12px 0;
+    text-align: center;
+    color: #1971c2;
+}
+
+.stats-quote {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 24px;
+    text-align: center;
+    font-style: italic;
+}
+
+.stats-view-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.stats-view-btn {
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #1971c2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.stats-view-btn.active,
+.stats-view-btn:hover {
+    background: #fff;
+    color: #1971c2;
+    box-shadow: 0 2px 8px rgba(25, 113, 194, 0.08);
+    transform: scale(1.05);
+}
+
+.stats-chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 32px auto;
+    background: #f7fbff;
+    border-radius: 16px;
+    padding: 32px 16px;
+    box-shadow: 0 2px 12px rgba(25, 113, 194, 0.07);
+}
+
+.stats-summary {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.stats-summary h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.stats-completed {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.stats-missed {
+    color: #FF6384;
+    font-weight: bold;
+}
+
+/* --- Study Materials Page Styling --- */
+/* Remove background and container styles */
+/* .study-page-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+} */
+
+/* .study-container {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(25,113,194,0.10);
+  padding: 36px 32px 32px 32px;
+  max-width: 700px;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+} */
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1971c2;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 0;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #b6d0e2;
+    font-size: 16px;
+    background: #f7fbff;
+    transition: border 0.2s;
+}
+
+.input-row input:focus {
+    border: 1.5px solid #1971c2;
+    outline: none;
+}
+
+.btn.add {
+    background: #1971c2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn.add:hover {
+    background: #339af0;
+}
+
+.subject-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 0;
+}
+
+.subject-tab {
+    background: #f0f4fa;
+    color: #1971c2;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border: 2px solid transparent;
+    min-width: 110px;
+    text-align: center;
+    position: relative;
+}
+
+.subject-tab.active {
+    background: #1971c2;
+    color: #fff;
+    border: 2px solid #1971c2;
+}
+
+.upload-section {
+    background: #f7fbff;
+    border-radius: 10px;
+    padding: 18px 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.upload-section h3 {
+    margin-top: 0;
+    color: #1971c2;
+    font-size: 1.1rem;
+}
+
+.upload-section input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.btn.upload {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn.upload:hover {
+    background: #218838;
+}
+
+.file-table {
+    margin-top: 18px;
+    background: #f7fbff;
+    border-radius: 10px;
+    padding: 16px 10px;
+    box-shadow: 0 2px 8px rgba(25, 113, 194, 0.04);
+}
+
+.file-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-table th,
+.file-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #e0eafc;
+    text-align: left;
+}
+
+.file-table th {
+    background: #e0eafc;
+    color: #1971c2;
+    font-weight: 600;
+}
+
+.file-table tr:last-child td {
+    border-bottom: none;
+}
+
+.btn.link {
+    background: none;
+    color: #1971c2;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0;
+}
+
+.btn.link:hover {
+    color: #339af0;
+}
+
+.muted {
+    color: #888;
+    font-style: italic;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
 }

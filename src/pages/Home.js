@@ -12,68 +12,41 @@ function parseLocalDate(dateString) {
   return new Date(year, month - 1, day);
 }
 
-function Home({ tasks, addTask, completeTask, deleteTask }) {
+function Home({ tasks, addTask, completeTask, deleteTask, handleLogout }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
-  // Remove this line from original (it causes error):
-  // const normalizedDate = normalizeDate(new Date(dueDateInput)); 
-
   const [date, setDate] = useState(new Date());
 
   const navigate = useNavigate();
 
   // Group tasks by dueDate string (format: YYYY-MM-DD)
   const tasksByDate = tasks.reduce((acc, task) => {
-    if (task.dueDate) {
-      acc[task.dueDate] = acc[task.dueDate] || [];
-      acc[task.dueDate].push(task);
+    if (task.due_date) {
+      const dateStr = new Date(task.due_date).toISOString().split('T')[0];
+      acc[dateStr] = acc[dateStr] || [];
+      acc[dateStr].push(task);
     }
     return acc;
   }, {});
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim() && description.trim() && dueDate) {
-      // Use dueDate string directly without any parsing or conversion
-      addTask(title, description, dueDate);  // dueDate is already 'YYYY-MM-DD'
+      addTask(title, description, dueDate); // dueDate is already 'YYYY-MM-DD'
       setTitle('');
       setDescription('');
       setDueDate('');
     }
   };
-  
 
-  const handleLogout = () => {
-    localStorage.removeItem('currentUser');
+  const handleLogoutClick = () => {
+    handleLogout();
     navigate('/login');
   };
 
   return (
     <div className="app-container">
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-left"></div>
-        <div className="navbar-right">
-          <button onClick={() => navigate("/")}>🏠 Home</button>
-          <button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
-          <button onClick={() => navigate("/Stats")}>📊 Statistics</button>
-          <button onClick={() => navigate("/study-material")}>📚 Study Material</button>
-          <button
-            onClick={handleLogout}
-            style={{
-              marginTop: '20px',
-              padding: '10px 20px',
-              background: 'crimson',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-            }}
-          >
-            Logout
-          </button>
-        </div>
-      </nav>
-
       {/* Main Content */}
       <div className="content">
         <div className="welcome-box">
@@ -109,24 +82,20 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
                 </td>
               </tr>
             ) : (
-              tasks.map((task, index) => {
-                const today = new Date();
-                const due = new Date(task.dueDate);
-                const isMissed = !task.completed && due < today;
-
+              tasks.map((task) => {
                 return (
-                  <tr key={index}>
+                  <tr key={task.id}>
                     <td>{task.title}</td>
                     <td>{task.description}</td>
-                    <td>{task.dueDate || '-'}</td>
-                    <td>{task.completed ? 'Completed' : isMissed ? 'Missed' : 'Pending'}</td>
+                    <td>{task.due_date ? new Date(task.due_date).toISOString().split('T')[0] : '-'}</td>
+                    <td>{task.completed ? 'Completed' : 'Pending'}</td>
                     <td>
                       {!task.completed && (
-                        <button className="complete-btn" onClick={() => completeTask(index)}>
+                        <button className="complete-btn" onClick={() => completeTask(task.id)}>
                           Complete
                         </button>
                       )}
-                      <button className="delete-btn" onClick={() => deleteTask(index)}>
+                      <button className="delete-btn" onClick={() => deleteTask(task.id)}>
                         Delete
                       </button>
                     </td>
@@ -135,9 +104,8 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
               })
             )}
           </tbody>
-        </table>    
-        
-        
+        </table>
+
         {/* Add Task Form */}
         <div className="add-task-form">
           <hr style={{ margin: '40px 0', borderColor: '#ccc' }} />
@@ -170,34 +138,38 @@ function Home({ tasks, addTask, completeTask, deleteTask }) {
               }}
             />
             <button type="submit">Add Task</button>
-
-            <Calendar
-              onChange={setDate}
-              value={date}
-              className="custom-calendar"
-              tileContent={({ date, view }) => {
-                if (view === 'month') {
-                  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-                  const dateStr = localDate.toISOString().split('T')[0];
-                  const dayTasks = tasksByDate[dateStr] || [];
-                  return (
-                    <div className="tasks-in-calendar">
-                      {dayTasks.map((task, idx) => (
-                        <div
-                          key={idx}
-                          className="calendar-task-item"
-                          title={task.title}
-                        >
-                          • {task.title.length > 15 ? task.title.slice(0, 15) + '...' : task.title}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                }
-                return null;
-              }}
-            />
           </form>
+        </div>
+
+        <div className="calendar-container">
+          <hr style={{ margin: '40px 0', borderColor: '#ccc' }} />
+          <h2>Task Calendar</h2>
+          <Calendar
+            onChange={setDate}
+            value={date}
+            className="custom-calendar"
+            tileContent={({ date, view }) => {
+              if (view === 'month') {
+                const pad = n => n.toString().padStart(2, '0');
+                const dateStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+                const dayTasks = tasksByDate[dateStr] || [];
+                return (
+                  <div className="tasks-in-calendar">
+                    {dayTasks.map((task, idx) => (
+                      <div
+                        key={idx}
+                        className="calendar-task-item"
+                        title={task.title}
+                      >
+                        • {task.title.length > 15 ? task.title.slice(0, 15) + '...' : task.title}
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+              return null;
+            }}
+          />
         </div>
       </div>
     </div>

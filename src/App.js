@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import Navbar from './components/Navbar';
@@ -12,138 +12,199 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import StudyMaterials from './components/StudyMaterials';
 
+// --- API Helper ---
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('token');
+  return {
+    'Content-Type': 'application/json',
+    'x-access-token': token,
+  };
+};
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [missed, setMissed] = useState([]);
-  const [theme, setTheme] = useState('default');
+  const [currentUser, setCurrentUser] = useState(null);
 
   const location = useLocation();
-  const currentUser = localStorage.getItem('currentUser');
-  const users = JSON.parse(localStorage.getItem('users')) || {};
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentUser && users[currentUser]) {
-      setTasks(users[currentUser].tasks || []);
-      setMissed(users[currentUser].missed || []);
+    const user = localStorage.getItem('currentUser');
+    if (user) {
+      setCurrentUser(JSON.parse(user));
+    }
+  }, []);
+
+  const fetchTasks = useCallback(async () => {
+    if (!currentUser) return;
+    try {
+      const response = await fetch('/api/tasks', {
+        headers: getAuthHeaders(),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const activeTasks = data.filter(task => !task.missed);
+        const missedTasks = data.filter(task => task.missed);
+        setTasks(activeTasks);
+        setMissed(missedTasks);
+      } else {
+        // Handle token expiry or other errors
+        if (response.status === 401) {
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('token');
+          setCurrentUser(null);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
     }
   }, [currentUser]);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'default';
-    setTheme(savedTheme);
-  }, []);
+    fetchTasks();
+  }, [fetchTasks]);
 
-  useEffect(() => {
-    if (currentUser) {
-      const updatedUsers = { ...users };
-      if (!updatedUsers[currentUser]) {
-        updatedUsers[currentUser] = { tasks: [], missed: [] };
-      }
-      updatedUsers[currentUser].tasks = tasks;
-      updatedUsers[currentUser].missed = missed;
-      localStorage.setItem('users', JSON.stringify(updatedUsers));
-    }
-    localStorage.setItem('theme', theme);
-  }, [tasks, missed, theme, currentUser]);
-
-  // 🔔 Notify WhatsApp on changes
-  const notifyWhatsApp = async (msg) => {
-    const users = JSON.parse(localStorage.getItem('users'));
-    const phone = users?.[currentUser]?.phone;
-
-    if (phone) {
-      await fetch('http://localhost:5000/sendNotification', {
+  const notifyWhatsApp = useCallback(async (message) => {
+    try {
+      await fetch('/api/send-notification', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phone,
-          taskTitle: msg,
-          dueDate: new Date().toISOString().split('T')[0],
-        }),
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ body: message }),
       });
+    } catch (error) {
+      console.error("Error sending notification:", error);
     }
-  };
+  }, []);
 
   const addTask = async (title, description, dueDate) => {
     if (!title.trim()) {
       toast.error("Title cannot be empty");
       return;
     }
-
-    const newTask = { title, description, dueDate, completed: false };
-    const updatedTasks = [...tasks, newTask];
-    setTasks(updatedTasks);
-    toast.success("Task Added!");
-    await notifyWhatsApp(`🆕 Task Added: ${title}`);
-
-    await fetch('http://localhost:5000/api/updateTasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: currentUser, tasks: updatedTasks })
-    });
-  };
-
-  const completeTask = async (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = true;
-    setTasks(updatedTasks);
-    toast.success("Good Job! Task Completed");
-    await notifyWhatsApp(`✅ Task Completed: ${tasks[index].title}`);
-
-    await fetch('http://localhost:5000/api/updateTasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: currentUser, tasks: updatedTasks })
-    });
-  };
-
-  const deleteTask = async (index) => {
-    const unfinishedTask = tasks[index];
-    let updatedMissed = [...missed];
-    let updatedTasks = tasks.filter((_, i) => i !== index);
-
-    if (!unfinishedTask.completed) {
-      updatedMissed = [...missed, unfinishedTask];
-      toast.error("Task missed! Added to missed list");
-      await notifyWhatsApp(`❌ Task Missed: ${unfinishedTask.title}`);
+    try {
+      const response = await fetch('/api/tasks', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ title, description, dueDate }),
+      });
+      if (response.ok) {
+        toast.success("Task Added!");
+        fetchTasks(); // Refetch tasks to update state
+        const username = currentUser?.username || 'User';
+        await notifyWhatsApp(`🆕 ${username} added a new task: "${title}"\n🗓 Due: ${dueDate}`);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to add task');
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
-
-    setMissed(updatedMissed);
-    setTasks(updatedTasks);
-
-    await fetch('http://localhost:5000/api/updateTasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: currentUser, tasks: updatedTasks })
-    });
   };
 
-  const completeMissedTask = async (index) => {
-    const taskToComplete = missed[index];
-    const updatedMissed = missed.filter((_, i) => i !== index);
-    const updatedTasks = [...tasks, { ...taskToComplete, completed: true }];
+  const completeTask = async (taskId) => {
+    try {
+      const taskToComplete = tasks.find(t => t.id === taskId);
+      const response = await fetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ completed: true }),
+      });
+      if (response.ok) {
+        toast.success("Good Job! Task Completed");
+        const username = currentUser?.username || 'User';
+        await notifyWhatsApp(`✅ ${username} completed the task: "${taskToComplete?.title}"`);
+        fetchTasks(); // Refetch
+      } else {
+        throw new Error('Failed to complete task');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
-    setMissed(updatedMissed);
-    setTasks(updatedTasks);
-    toast.success("Missed Task Completed!");
+  const deleteTask = async (taskId) => {
+    try {
+      const taskToDelete = tasks.find(t => t.id === taskId);
+      const response = await fetch(`/api/tasks/${taskId}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
+      if (response.ok) {
+        toast.warn("Task deleted");
+        const username = currentUser?.username || 'User';
+        await notifyWhatsApp(`🗑 ${username} deleted the task: "${taskToDelete?.title}"`);
+        fetchTasks(); // Refetch
+      } else {
+        throw new Error('Failed to delete task');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
-    await fetch('http://localhost:5000/api/updateTasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: currentUser, tasks: updatedTasks })
-    });
+  const completeMissedTask = async (taskId) => {
+    try {
+      const taskToComplete = missed.find(t => t.id === taskId);
+      const response = await fetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ completed: true, missed: false }), // Mark as completed and not missed
+      });
+      if (response.ok) {
+        toast.success("Missed Task Completed!");
+        const username = currentUser?.username || 'User';
+        await notifyWhatsApp(`✅ ${username} completed a missed task: "${taskToComplete?.title}"`);
+        fetchTasks(); // Refetch all tasks
+      } else {
+        throw new Error('Failed to complete missed task');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const deleteMissedTask = async (taskId) => {
+    try {
+      const taskToDelete = missed.find(t => t.id === taskId);
+      const response = await fetch(`/api/tasks/${taskId}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
+      if (response.ok) {
+        toast.warn("Missed task deleted.");
+        const username = currentUser?.username || 'User';
+        await notifyWhatsApp(`🗑 ${username} deleted a missed task: "${taskToDelete?.title}"`);
+        fetchTasks(); // Refetch
+      } else {
+        throw new Error('Failed to delete missed task');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    setCurrentUser(null);
+    toast.success("You have been logged out.");
+    navigate('/login', { replace: true });
   };
 
   return (
-    <div className={`App ${theme}`}>
-      <Navbar theme={theme} setTheme={setTheme} />
+    <div className={`App light-theme`}>
+      <Navbar currentUser={currentUser} handleLogout={handleLogout} />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-        <Route path="/study-material" element={<StudyMaterials />} /> {/* ✅ Add this */}
-
+          <Route
+            path="/study-material"
+            element={
+              currentUser ? <StudyMaterials /> : <Navigate to="/login" replace />
+            }
+          />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setCurrentUser={setCurrentUser} notifyWhatsApp={notifyWhatsApp} />} />
           <Route
             path="/"
             element={<Navigate to={currentUser ? "/home" : "/signup"} replace />}
@@ -158,6 +219,7 @@ function App() {
                     addTask={addTask}
                     completeTask={completeTask}
                     deleteTask={deleteTask}
+                    handleLogout={handleLogout}
                   />
                 }
               />
@@ -166,11 +228,7 @@ function App() {
                 element={
                   <Missed
                     missed={missed}
-                    deleteMissedTask={(index) => {
-                      const updatedMissed = missed.filter((_, i) => i !== index);
-                      setMissed(updatedMissed);
-                      toast.success("Missed Task Deleted");
-                    }}
+                    deleteMissedTask={deleteMissedTask}
                     completeMissedTask={completeMissedTask}
                   />
                 }

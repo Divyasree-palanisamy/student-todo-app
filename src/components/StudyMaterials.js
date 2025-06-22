@@ -1,160 +1,187 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
 
-export default function StudyMaterials({theme = "theme-default" }) {
-  const navigate = useNavigate(); // ✅ Move it here
+const getAuthHeaders = () => ({
+  'x-access-token': localStorage.getItem('token'),
+});
 
-  const [subjects, setSubjects] = useState(() => {
-    const saved = localStorage.getItem("studySubjects");
-    return saved ? JSON.parse(saved) : {};
-  });
+const API_BASE_URL = 'http://localhost:5000';
 
+export default function StudyMaterials({ theme = "theme-default" }) {
+  const navigate = useNavigate();
+
+  const [subjects, setSubjects] = useState([]);
   const [subjectName, setSubjectName] = useState("");
   const [selectedSubject, setSelectedSubject] = useState(null);
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [fileToUpload, setFileToUpload] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchSubjects = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/subjects', { headers: getAuthHeaders() });
+      if (!response.ok) throw new Error('Failed to fetch subjects.');
+      const data = await response.json();
+      setSubjects(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem("studySubjects", JSON.stringify(subjects));
-  }, [subjects]);
+    fetchSubjects();
+  }, [fetchSubjects]);
 
-  const addSubject = () => {
-    if (!subjectName.trim()) return alert("Enter a subject name");
-    if (subjects[subjectName]) return alert("Subject already exists");
-    setSubjects({ ...subjects, [subjectName]: [] });
-    setSubjectName("");
-  };
-
-  const deleteSubject = (subj) => {
-    if (window.confirm(`Delete subject "${subj}" and all its files?`)) {
-      const updated = { ...subjects };
-      delete updated[subj];
-      setSubjects(updated);
-      if (selectedSubject === subj) setSelectedSubject(null);
+  const handleSelectSubject = async (subject) => {
+    setSelectedSubject(subject);
+    if (!subject) {
+      setFiles([]);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/api/subjects/${subject.id}/files`, { headers: getAuthHeaders() });
+      if (!response.ok) throw new Error('Failed to fetch files.');
+      const data = await response.json();
+      setFiles(data);
+    } catch (err) {
+      setError(err.message);
+      setFiles([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const uploadFile = () => {
-    if (!selectedSubject) return alert("Select a subject");
-    if (!file) return alert("Choose a file");
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const base64 = e.target.result;
-      const updatedFiles = [
-        ...subjects[selectedSubject],
-        {
-          name: file.name,
-          data: base64,
-          uploadedAt: new Date().toLocaleString(),
-        },
-      ];
-      setSubjects({ ...subjects, [selectedSubject]: updatedFiles });
-      setFile(null);
-    };
-    reader.readAsDataURL(file);
+  const addSubject = async () => {
+    if (!subjectName.trim()) return;
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/subjects', {
+        method: 'POST',
+        headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: subjectName }),
+      });
+      if (!response.ok) throw new Error('Failed to add subject.');
+      setSubjectName("");
+      fetchSubjects(); // Refresh subjects list
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const downloadFile = (file) => {
-    const link = document.createElement("a");
-    link.href = file.data;
-    link.download = file.name;
-    link.click();
+  const uploadFile = async () => {
+    if (!selectedSubject || !fileToUpload) return;
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+
+    try {
+      const response = await fetch(`/api/subjects/${selectedSubject.id}/files`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: formData,
+      });
+      if (!response.ok) throw new Error('Failed to upload file.');
+      setFileToUpload(null);
+      document.getElementById('file-input').value = null; // Clear file input
+      fetchSubjects(); // Refresh subjects list to update count
+      handleSelectSubject(selectedSubject); // Refresh file list
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
-    <>
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-left"></div>
-        <div className="navbar-right">
-          <button onClick={() => navigate("/")}>🏠 Home</button>
-          <button onClick={() => navigate("/missed")}>⏰ Missed Tasks</button>
-          <button onClick={() => navigate("/Stats")}>📊 Statistics</button>
+    <div className={`study-page-wrapper ${theme}`}>
+      <div className="study-container">
+        <h2 className="title">📚 Study Materials</h2>
+        {error && <p className="error-message">{error}</p>}
 
+        <div className="input-row">
+          <input
+            value={subjectName}
+            onChange={(e) => setSubjectName(e.target.value)}
+            placeholder="New Subject Name"
+            disabled={isLoading}
+          />
+          <button className="btn add" onClick={addSubject} disabled={isLoading}>
+            {isLoading ? 'Adding...' : '👉 Add'}
+          </button>
         </div>
-      </nav>
-  
-      {/* Main Content */}
-      <div className={`study-page-wrapper ${theme}`}>
-        <div className="study-container">
-          <h2 className="title">📚 Study Materials</h2>
-  
-          <div className="input-row">
+
+        <div className="subject-list">
+          {subjects.length === 0 ? (
+            <p className="muted">No subjects yet. Add one to get started!</p>
+          ) : (
+            subjects.map((subj) => (
+              <div
+                key={subj.id}
+                className={`subject-tab ${selectedSubject?.id === subj.id ? "active" : ""}`}
+                onClick={() => handleSelectSubject(subj)}
+              >
+                {subj.name} ({subj.file_count})
+              </div>
+            ))
+          )}
+        </div>
+
+        {selectedSubject && (
+          <div className="upload-section">
+            <h3>Upload to "{selectedSubject.name}"</h3>
             <input
-              value={subjectName}
-              onChange={(e) => setSubjectName(e.target.value)}
-              placeholder="New Subject Name"
+              id="file-input"
+              type="file"
+              onChange={(e) => setFileToUpload(e.target.files[0])}
+              disabled={isLoading}
             />
-            <button className="btn add" onClick={addSubject}>
-            👉Add
+            <button className="btn upload" onClick={uploadFile} disabled={isLoading || !fileToUpload}>
+              {isLoading ? 'Uploading...' : 'Upload'}
             </button>
           </div>
-  
-          <div className="subject-list">
-            {Object.keys(subjects).length === 0 ? (
-              <p className="muted">No subjects yet</p>
-            ) : (
-              Object.keys(subjects).map((subj) => (
-                <div
-                  key={subj}
-                  className={`subject-tab ${selectedSubject === subj ? "active" : ""}`}
-                  onClick={() => setSelectedSubject(subj)}
-                >
-                  {subj}
-                  <span
-                    className="delete-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      deleteSubject(subj);
-                    }}
-                  >
-                    &times;
-                  </span>
-                </div>
-              ))
-            )}
-          </div>
-  
-          {selectedSubject && (
-            <div className="upload-section">
-              <h3>Upload to "{selectedSubject}"</h3>
-              <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-              <button className="btn upload" onClick={uploadFile}>
-                Upload
-              </button>
-            </div>
-          )}
-  
-          {selectedSubject && subjects[selectedSubject].length > 0 && (
-            <div className="file-table">
-              <h3>Files in "{selectedSubject}"</h3>
+        )}
+
+        {selectedSubject && (
+          <div className="file-table">
+            <h3>Files in "{selectedSubject.name}"</h3>
+            {files.length > 0 ? (
               <table>
                 <thead>
                   <tr>
                     <th>Filename</th>
-                    <th>Uploaded At</th>
                     <th>Download</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {subjects[selectedSubject].map((file, idx) => (
-                    <tr key={idx}>
+                  {files.map((file) => (
+                    <tr key={file.id}>
                       <td>{file.name}</td>
-                      <td>{file.uploadedAt}</td>
                       <td>
-                        <button className="btn link" onClick={() => downloadFile(file)}>
+                        <a
+                          href={`${API_BASE_URL}/uploads/${file.path.replace('\\', '/')}`}
+                          className="btn link"
+                          download
+                        >
                           Download
-                        </button>
+                        </a>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
-          )}
-  
-         
-        </div>
+            ) : (
+              <p className="muted">No files in this subject yet.</p>
+            )}
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
-}  
+}

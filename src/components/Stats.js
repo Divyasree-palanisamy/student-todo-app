@@ -29,7 +29,8 @@ export default function Stats({ tasks, missed, view }) {
 
   const filterTasksByView = () => {
     return tasks.filter(task => {
-      const taskDate = parseDate(task.dueDate);
+      const taskDate = parseDate(task.dueDate || task.due_date);
+      if (!taskDate || isNaN(taskDate)) return false;
       if (view === 'daily') return isSameDay(taskDate, today);
       if (view === 'weekly') return isSameWeek(taskDate, today);
       if (view === 'monthly') return isSameMonth(taskDate, today);
@@ -58,15 +59,15 @@ export default function Stats({ tasks, missed, view }) {
     completed >= 10
       ? '🥇 Super Achiever Badge!'
       : completed >= 5
-      ? '🏆 Consistent Performer!'
-      : null;
+        ? '🏆 Consistent Performer!'
+        : null;
 
   return (
     <div className="min-h-screen h-screen p-6 bg-white dark:bg-gray-900 transition-colors duration-300 flex items-center justify-center">
-<div
-  className="space-y-6 max-w-xl w-full rounded-2xl shadow-lg p-6 bg-white dark:bg-gray-900"
-  style={{ minHeight: 400 }}
->
+      <div
+        className="space-y-6 max-w-xl w-full rounded-2xl shadow-lg p-6 bg-white dark:bg-gray-900"
+        style={{ minHeight: 400 }}
+      >
         <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
           {view.toUpperCase()} STATS
         </h2>
