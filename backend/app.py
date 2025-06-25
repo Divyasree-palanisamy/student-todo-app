@@ -44,7 +44,7 @@ def get_db_connection():
         'host': 'localhost',
         'user': 'root',
         'password': 'Divya@2004',
-        'database': 'student_todo_b' # Using a new DB name
+        'database': 'studeny' # Using a new DB name
     }
     try:
         conn = mysql.connector.connect(**db_config)
@@ -61,9 +61,9 @@ def init_db():
         # Connect without specifying a database to create it
         conn = mysql.connector.connect(host='localhost', user='root', password='Divya@2004')
         cursor = conn.cursor()
-        cursor.execute("CREATE DATABASE IF NOT EXISTS student_todo_b")
-        cursor.execute("USE student_todo_b")
-        print("Database 'student_todo_b' is ready.")
+        cursor.execute("CREATE DATABASE IF NOT EXISTS studeny")
+        cursor.execute("USE studeny")
+        print("Database 'studen' is ready.")
 
         # Table creation queries
         users_table = """
