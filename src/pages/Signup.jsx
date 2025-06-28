@@ -56,41 +56,59 @@ function Signup() {
   };
 
   return (
-    <div className="auth-page">
-      <h2>Signup</h2>
-      <form onSubmit={handleSignup} className="auth-form">
-        {error && <p className="error-message">{error}</p>}
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" className="auth-button" disabled={loading}>
-          {loading ? 'Signing up...' : 'Signup'}
-        </button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login" className="auth-link">Login here</Link>
-      </p>
+    <div
+      className="login-bg"
+      style={{
+        background: "url('/login-bg-image.png') center center/cover no-repeat, linear-gradient(120deg, #2193b0 0%, #6dd5ed 100%)",
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        zIndex: 0
+      }}
+    >
+      <div className="login-split-card">
+        <div className="login-form-side">
+          <h2>Signup</h2>
+          <form onSubmit={handleSignup}>
+            {error && <p className="error-message">{error}</p>}
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <button type="submit" disabled={loading}>
+              {loading ? 'Signing up...' : 'Signup'}
+            </button>
+          </form>
+          <p>
+            Already have an account? <Link to="/login" className="auth-link">Login here</Link>
+          </p>
+        </div>
+        <div className="login-illustration-side">
+          <img src="/login-illustration.png" alt="Signup Illustration" />
+        </div>
+      </div>
     </div>
   );
 }

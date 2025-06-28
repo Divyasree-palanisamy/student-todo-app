@@ -8,6 +8,7 @@ import Missed from './pages/Missed';
 import StatsPage from './pages/StatsPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Chat from './pages/Chat';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import StudyMaterials from './components/StudyMaterials';
@@ -192,8 +193,17 @@ function App() {
     navigate('/login', { replace: true });
   };
 
+  const appStyle = {
+    minHeight: "100vh",
+    backgroundImage: "url('/modern-aesthetic-bg.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
-    <div className={`App light-theme`}>
+    <div className={`App light-theme`} style={appStyle}>
       <Navbar currentUser={currentUser} handleLogout={handleLogout} />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
@@ -201,6 +211,12 @@ function App() {
             path="/study-material"
             element={
               currentUser ? <StudyMaterials /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              currentUser ? <Chat /> : <Navigate to="/login" replace />
             }
           />
           <Route path="/signup" element={<Signup />} />

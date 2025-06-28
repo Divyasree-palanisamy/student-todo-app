@@ -4,7 +4,13 @@ function Missed({ missed, completeMissedTask, deleteMissedTask }) {
   const navigate = useNavigate();
 
   return (
-    <div className="app-container">  {/* Use app-container to apply full background */}
+    <div className="app-container" style={{
+      backgroundImage: "url('/modern-aesthetic-bg.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed",
+      backgroundRepeat: "no-repeat"
+    }}>  {/* Use app-container to apply full background */}
       {/* Main Content */}
       <div className="content">
         <h1>⏰ Missed Tasks</h1>

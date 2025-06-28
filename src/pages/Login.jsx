@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Login({ setCurrentUser, notifyWhatsApp }) {
@@ -57,28 +57,45 @@ function Login({ setCurrentUser, notifyWhatsApp }) {
   };
 
   return (
-    <div className="auth-page">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin} className="auth-form">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" className="auth-button">Login</button>
-      </form>
-
-      {/* Link to signup page */}
-      <p>Don't have an account? <Link to="/signup" className="auth-link">Signup here</Link></p>
+    <div
+      className="login-bg"
+      style={{
+        background: "url('/login-bg-image.png') center center/cover no-repeat, linear-gradient(120deg, #2193b0 0%, #6dd5ed 100%)",
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        zIndex: 0
+      }}
+    >
+      <div className="login-split-card">
+        <div className="login-form-side">
+          <h2>Login</h2>
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              autoComplete="username"
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              autoComplete="current-password"
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+            <button type="submit">Sign In</button>
+          </form>
+        </div>
+        <div className="login-illustration-side">
+          <img src="/login-illustration.png" alt="Login Illustration" />
+        </div>
+      </div>
     </div>
   );
 }

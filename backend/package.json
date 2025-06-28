@@ -1,0 +1,27 @@
+{
+    "name": "student-todo-backend",
+    "version": "1.0.0",
+    "description": "Backend for Student Todo App with Chat functionality",
+    "main": "chat_server.js",
+    "scripts": {
+        "start": "node chat_server.js",
+        "dev": "nodemon chat_server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "socket.io": "^4.7.4",
+        "cors": "^2.8.5"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    },
+    "keywords": [
+        "chat",
+        "socket.io",
+        "express",
+        "student",
+        "todo"
+    ],
+    "author": "Student Todo App",
+    "license": "MIT"
+}

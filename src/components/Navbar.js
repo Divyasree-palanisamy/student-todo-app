@@ -25,6 +25,7 @@ function Navbar({ currentUser, handleLogout }) {
             <Link to="/missed" className="navbar-link">Missed</Link>
             <Link to="/stats" className="navbar-link">Stats</Link>
             <Link to="/study-material" className="navbar-link">Study Material</Link>
+            <Link to="/chat" className="navbar-link">Chat</Link>
             <button onClick={handleLogout} className="navbar-button logout-button">Logout</button>
           </>
         ) : (

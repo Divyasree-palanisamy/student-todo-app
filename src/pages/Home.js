@@ -46,7 +46,13 @@ function Home({ tasks, addTask, completeTask, deleteTask, handleLogout }) {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{
+      backgroundImage: "url('/modern-aesthetic-bg.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed",
+      backgroundRepeat: "no-repeat"
+    }}>
       {/* Main Content */}
       <div className="content">
         <div className="welcome-box">

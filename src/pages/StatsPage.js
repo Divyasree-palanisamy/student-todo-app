@@ -26,7 +26,13 @@ export default function StatsPage({ tasks, missed }) {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{
+      backgroundImage: "url('/modern-aesthetic-bg.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed",
+      backgroundRepeat: "no-repeat"
+    }}>
       <div className="content">
         <h1 className="stats-title">
           📊 Task Statistics
