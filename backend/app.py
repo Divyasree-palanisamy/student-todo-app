@@ -12,20 +12,16 @@ from flask.cli import with_appcontext
 from dotenv import load_dotenv
 from twilio.rest import Client
 
-load_dotenv() # Load environment variables from .env file
+load_dotenv() 
 
-# --- App Configuration ---
 app = Flask(__name__)
-# It's recommended to load these from a .env file for security
 app.config['SECRET_KEY'] = 'your_secret_key_super_secure'
 app.config['JWT_SECRET_KEY'] = 'another_super_secret_key_for_jwt'
 
-# Twilio Configuration
 TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 
-# Initialize Twilio client only if credentials are provided
 twilio_client = None
 if all([TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER]):
     twilio_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
@@ -44,7 +40,7 @@ def get_db_connection():
         'host': 'localhost',
         'user': 'root',
         'password': 'Divya@2004',
-        'database': 'studeny' # Using a new DB name
+        'database': 'studeny' 
     }
     try:
         conn = mysql.connector.connect(**db_config)
@@ -58,14 +54,12 @@ def get_db_connection():
 def init_db():
     """Creates the database and tables if they don't exist."""
     try:
-        # Connect without specifying a database to create it
         conn = mysql.connector.connect(host='localhost', user='root', password='Divya@2004')
         cursor = conn.cursor()
         cursor.execute("CREATE DATABASE IF NOT EXISTS studeny")
         cursor.execute("USE studeny")
         print("Database 'studen' is ready.")
 
-        # Table creation queries
         users_table = """
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -131,7 +125,6 @@ def init_db_command():
 app.cli.add_command(init_db_command)
 
 
-# --- Token Decorator ---
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
